@@ -16,14 +16,12 @@ function PlaceholderScreen() {
 
 export default function RootNavigator() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Búsqueda" component={PlaceholderScreen} />
-        <Tab.Screen name="Reservas" component={PlaceholderScreen} />
-        <Tab.Screen name="Favoritos" component={PlaceholderScreen} />
-        <Tab.Screen name="Perfil" component={PlaceholderScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Búsqueda" component={PlaceholderScreen} />
+      <Tab.Screen name="Reservas" component={PlaceholderScreen} />
+      <Tab.Screen name="Favoritos" component={PlaceholderScreen} />
+      <Tab.Screen name="Perfil" component={PlaceholderScreen} />
+    </Tab.Navigator>
   );
 }
