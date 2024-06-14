@@ -1,70 +1,142 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import React from 'react';
+import { View, Text, TextInput, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.logo}>ServiFinds</Text>
+        <TextInput style={styles.searchInput} placeholder="Buscar" />
+      </View>
+      <View style={styles.imagePlaceholder} />
+      <ScrollView horizontal style={styles.categoriesContainer}>
+        {['Limpieza', 'Arreglos', 'Jardinería', 'Manicura', 'Otros'].map((category, index) => (
+          <View key={index} style={styles.category}>
+            <Text>{category}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <View style={styles.recommendationsContainer}>
+        <Text style={styles.sectionTitle}>Recomendaciones para ti</Text>
+        {Array(3).fill(null).map((_, index) => (
+          <View key={index} style={styles.recommendation}>
+            <Image
+              source={{ uri: 'https://via.placeholder.com/50' }}
+              style={styles.recommendationImage}
+            />
+            <View style={styles.recommendationText}>
+              <View style={styles.rating}>
+             
+                <Text style={styles.ratingText}>4.9 (234)</Text>
+              </View>
+              <Text style={styles.recommendationTitle}>Jardinería</Text>
+              <Text style={styles.recommendationSubtitle}>
+                Hola me llamo Luis y me gustan las conejsitas
+              </Text>
+            </View>
+            <View style={styles.moreIcon}>
+       
+            </View>
+          </View>
+        ))}
+      </View>
+      <View style={styles.footer}>
+        {['Home', 'Búsqueda', 'Reservas', 'Favoritos', 'Perfil'].map((label, index) => (
+          <TouchableOpacity key={index} style={styles.footerButton}>
+            
+            <Text>{label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
   },
-  stepContainer: {
-    gap: 8,
+  logo: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  searchInput: {
+    flex: 1,
+    marginLeft: 16,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+  },
+  imagePlaceholder: {
+    height: 100,
+    backgroundColor: '#c2c7b7',
+    margin: 16,
+    borderRadius: 8,
+  },
+  categoriesContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+  },
+  category: {
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  recommendationsContainer: {
+    paddingHorizontal: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  recommendation: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  recommendationImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    marginRight: 16,
+  },
+  recommendationText: {
+    flex: 1,
+  },
+  rating: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
+    marginLeft: 4,
+  },
+  recommendationTitle: {
+    fontWeight: 'bold',
+  },
+  recommendationSubtitle: {
+    color: '#666',
+  },
+  moreIcon: {
+    marginLeft: 16,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 16,
+    borderTopWidth: 1,
+    borderColor: '#ccc',
+  },
+  footerButton: {
+    alignItems: 'center',
   },
 });
