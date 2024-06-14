@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import RootNavigator from './navigation/RootNavigator';
 
 export default function HomeScreen() {
   return (
@@ -30,25 +30,18 @@ export default function HomeScreen() {
              
                 <Text style={styles.ratingText}>4.9 (234)</Text>
               </View>
-              <Text style={styles.recommendationTitle}>Jardinería</Text>
+              <Text style={styles.recommendationTitle}>Trabajo</Text>
               <Text style={styles.recommendationSubtitle}>
-                Hola me llamo Luis y me gustan las conejsitas
+                Descripción
               </Text>
             </View>
             <View style={styles.moreIcon}>
-       
+  
             </View>
           </View>
         ))}
       </View>
-      <View style={styles.footer}>
-        {['Home', 'Búsqueda', 'Reservas', 'Favoritos', 'Perfil'].map((label, index) => (
-          <TouchableOpacity key={index} style={styles.footerButton}>
-            
-            <Text>{label}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+
     </ScrollView>
   );
 }
@@ -128,15 +121,5 @@ const styles = StyleSheet.create({
   },
   moreIcon: {
     marginLeft: 16,
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 16,
-    borderTopWidth: 1,
-    borderColor: '#ccc',
-  },
-  footerButton: {
-    alignItems: 'center',
   },
 });
